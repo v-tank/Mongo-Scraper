@@ -23,40 +23,46 @@ app.set("view engine", "handlebars");
 mongoose.Promise = Promise;
 mongoose.connect("mongodb://localhost/techNews");
 
-app.get("/scrape", function(req, res) {
+app.get("/", function(req, res) {
   axios.get("https://techcrunch.com/").then(function(response) {
+
     var $ = cheerio.load(response.data);
 
-    $("article.post-block").each(function (i, element) {
+    // console.log("out here");
+    
+    $(".post-block").each(function (i, element) {
+      // console.log("in here");
 
       var dataToSave = {};
 
-      var title = $(element).children().find('h2.post-block__title').text();
-      var author = $(element).children().find('span.river-byline__authors').find('a').text();
-      var time = $(element).children().find('time.river-byline__time').text().trim();
-      var excerpt = $(element).children().find('div.post-block__content').text();
-      var link = $(element).children().find('footer.post-block__footer').find('img').attr('src');
-      
+      var title = $(element).children().find('h2.post-block__title').text().trim();
+      var author = $(element).children().find('span.river-byline__authors').find('a').text().trim();
+      var time = $(element).children().find('.river-byline__time').text().trim();
+      // var excerpt = $(element).children().find('.post-block__content').find('p');
+      var link = $(element).children().find('.post-block__media').find('img').attr('src');
+
+      // console.log(title);
+
       dataToSave = {
         title: title,
         author: author,
         time: time,
-        excerpt: excerpt,
+        // excerpt: excerpt,
         link: link
       }
-      
-      console.log(dataToSave);
 
+      console.log(dataToSave);
+      
       db.Article.create(dataToSave)
         .then(function(dbArticle) {
-          console.log(dbArticle);
+          // console.log(dbArticle);
+          
         })
         .catch(function(error) {
-          return res.json(err);
+          return res.json(error);
         });
     });
-
-    res.send("Scrape complete.");
+    res.send("Scrape complete");
   });
 });
 
