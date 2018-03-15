@@ -24,6 +24,12 @@ mongoose.Promise = Promise;
 mongoose.connect("mongodb://localhost/techNews");
 
 app.get("/", function(req, res) {
+  db.Article.find({}).sort({_id: -1}).then(function(result) {
+    res.render("index", {articles: result});
+  })
+})
+
+app.get("/scrape", function(req, res) {
   axios.get("https://techcrunch.com/").then(function(response) {
 
     var $ = cheerio.load(response.data);
@@ -59,18 +65,14 @@ app.get("/", function(req, res) {
           
         })
         .catch(function(error) {
-          return res.json(error);
+          return;
         });
     });
-    res.send("Scrape complete");
+    console.log("Scrape complete.");
+    res.redirect("/");
   });
 });
 
-app.get("/articles", function(req, res) {
-  db.Article.find({}).then(function(result) {
-    res.json(result);
-  })
-})
 
 app.listen(PORT, function() {
   console.log("App running on port " + PORT + ".");
