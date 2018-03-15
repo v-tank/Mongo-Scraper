@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    {{#each articles}}
+      <div class="col-4">
+        <div class="item">
+          <div class="box">
+            <a href="{{this.link}}" class="img" title="{{this.title}}">
+              <img src="{{this.link}}" alt="" />
+            </a>
+            <a href="{{this.link}}">
+              <div class="desc">{{this.title}}</div>
+            </a>
+          </div>
+          
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
