@@ -53,11 +53,18 @@ header {
   padding: 10px;
 }
 
-#save-article-btn, #unsave-article-btn, #add-note-btn {
+#unsave-article-btn {
   background: #EF5353;
   color: #fff;
   padding: 5px;
 }
+
+#save-article-btn, #add-note-btn {
+  background: #67ac5b;
+  color: #fff;
+  padding: 5px;
+}
+
 
 #save-article-btn:hover, #unsave-article-btn:hover, #add-note-btn:hover {
   background: rgb(241, 131, 131);
