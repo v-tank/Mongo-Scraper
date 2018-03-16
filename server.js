@@ -39,11 +39,8 @@ app.get("/scrape", function(req, res) {
   axios.get("https://techcrunch.com/").then(function(response) {
 
     var $ = cheerio.load(response.data);
-
-    // console.log("out here");
     
     $(".post-block").each(function (i, element) {
-      // console.log("in here");
 
       var dataToSave = {};
 
@@ -51,12 +48,7 @@ app.get("/scrape", function(req, res) {
       var author = $(element).children().find('span.river-byline__authors').find('a').text().trim();
       var time = $(element).children().find('.river-byline__time').text().trim();
       var articleLink = $(element).children().find('h2.post-block__title').find('a').attr("href");
-      var imgLink = $(element).children().find('.post-block__media').find('img').attr('src');
-      // var imgLink = $(element).children().find("source").attr("data-srcset").split(",")[1].split(" ")[0];
-
-      // var imgLink = $(element).children().find(".post-block__media").find("picture").attr("data-srcset");
-
-      // console.log(title);
+      var imgLink = $(element).children().find('.post-block__media').find('img').attr('src').replace("crop=1", "crop=2");
 
       dataToSave = {
         title: title,
@@ -70,8 +62,7 @@ app.get("/scrape", function(req, res) {
       
       db.Article.create(dataToSave)
         .then(function(dbArticle) {
-          // console.log(dbArticle);
-          
+          console.log(dbArticle);
         })
         .catch(function(error) {
           return;
