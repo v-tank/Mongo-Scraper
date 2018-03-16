@@ -20,8 +20,10 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/techNews"
+
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/techNews");
+mongoose.connect(MONGODB_URI);
 
 app.get("/", function(req, res) {
   db.Article.find({ "saved": false }, function (err, data) {
