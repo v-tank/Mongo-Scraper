@@ -1,17 +1,25 @@
-<div class="container">
-  <div class="row">
+<div class="container main-div">
+  <div class="row mt-5">
     {{#each articles}}
-      <div class="col-4">
+      <div class="col-12 col-md-4">
         <div class="item">
-          <div class="box">
-            <a href="{{this.link}}" class="img" title="{{this.title}}">
-              <img src="{{this.link}}" alt="" />
-            </a>
-            <a href="{{this.link}}">
-              <div class="desc">{{this.title}}</div>
-            </a>
+          <a href="{{this.imgLink}}" class="img" title="{{this.title}}">
+            <img src="{{this.imgLink}}" alt="{{this.title}}" />
+          </a>
+          <div class="row align-items-center">
+            <div class="col">
+              <a class="nav-btn ml-0 ml-sm-3 ml-md-2" data-id="{{this._id}}" id="save-article-btn">Save Article</a>
+            </div>
+            <div class="col">
+              <p id="time">{{this.time}}</p>
+            </div>
           </div>
-          
+          <div class="desc">
+            <h3>
+              <a href="{{this.articleLink}}">{{this.title}}</a>
+            </h3>
+            <p>by <span id="author"><strong>{{this.author}}</strong></span></p>
+          </div>
         </div>
       </div>
     {{/each}}

@@ -5,8 +5,22 @@ html {
 }
 
 body {
+  font-family: "Roboto",sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  background: #f4f7f6;
+}
+
+header {
   font-family: "Montserrat", arial, sans-serif;
-  background: #f5f6f7;
+}
+
+.col-md-4 {
+  padding: 0 !important;
+}
+
+.main-div {
+  margin-bottom: 100px;
 }
 
 .navbar-brand {
@@ -25,12 +39,35 @@ body {
   /* float: right; */
   font-family: "Montserrat", arial, sans-serif;
   color: #444;
-  margin-left: 20px;
+  /* margin-left: 20px; */
 }
 
-.nav-btn:hover {
-  color: #777 !important;
-  text-decoration: none;
+#saved-btn:hover {
+  color: #777;
+  cursor: pointer;
+}
+
+#scrape-btn{
+  background: #EF5353;
+  color: #fff;
+  padding: 10px;
+}
+
+#save-article-btn, #unsave-article-btn, #add-note-btn {
+  background: #EF5353;
+  color: #fff;
+  padding: 5px;
+}
+
+#save-article-btn:hover, #unsave-article-btn:hover, #add-note-btn:hover {
+  background: rgb(241, 131, 131);
+  color: #fff;
+  cursor: pointer;
+}
+
+#scrape-btn:hover {
+  background: rgb(241, 131, 131);
+  color: #fff;
   cursor: pointer;
 }
 
@@ -48,11 +85,9 @@ body {
 }
 
 .item img {
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  overflow: hidden;
-  max-width: 100% !important;
-  height: auto !important;
+  max-width: 100%;
+  /* width: 300px;
+  height: 160px; */
   -webkit-transition: 0.2s;
   -o-transition: 0.2s;
   transition: 0.2s;
@@ -66,6 +101,26 @@ body {
   padding: 20px;
   float: left;
   line-height: 24px;
+}
+
+.desc h3 {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.desc a {
+  text-decoration: none;
+  color: #202121;
+}
+
+#author {
+  color: #EF5353;
+}
+
+#time {
+  text-align: right;
+  margin: 10px 10px 0 0;
+  color: #999;
 }
 
 .footer {

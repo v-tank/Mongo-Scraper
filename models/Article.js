@@ -17,9 +17,18 @@ var ArticleSchema = new Schema({
     type: String,
     required: true
   },
-  link: {
+  articleLink: {
     type: String,
     required: true
+  },
+  imgLink: {
+    type: String,
+    required: true
+  },
+  saved: {
+    type: Boolean,
+    required: true,
+    default: false
   },
 
   notes: [{
